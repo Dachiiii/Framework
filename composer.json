@@ -1,0 +1,16 @@
+{
+    "name": "dachi/booking",
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "./"
+        }
+    },
+
+    "files": [
+        "Framework/helpers.php"
+    ],
+    "require": {
+        "symfony/dotenv": "^7.1",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

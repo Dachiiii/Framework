@@ -20,14 +20,15 @@ class Application {
 			$match = $this->routing->matches($route['uri'], $this->request->uri);
 			if ($route['method'] === $this->request->method) {
 				if ($match or $route['uri'] === $this->request->uri) {
+				
 					$route['controller'][0] = new $route['controller'][0]();
 					$callable = call_user_func($route['controller'],$this->request,$match);
 					return print($callable->template());					
 				} 
 			}
 
-			if ($match or $route['uri'] === $this->request->uri && ($route['method'] != $this->request->uri))
-				return $this->routing->dispatchMethodNotAllowed();
+			// if ($match or $route['uri'] === $this->request->uri && ($route['method'] != $this->request->uri))
+			// 	return $this->routing->dispatchMethodNotAllowed();
 		}
 		return $this->routing->dispatchNotFound();
 

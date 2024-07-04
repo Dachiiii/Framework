@@ -12,4 +12,8 @@ class Request {
 		$this->uri = $this->request['REQUEST_URI'];
 		$this->method = $this->request['REQUEST_METHOD'];
 	}
+
+	public function POST() {
+		return $_POST;
+	}
 }

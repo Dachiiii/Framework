@@ -22,4 +22,9 @@ class Response {
 	public static function dispatch(string $dispatcher) {
 		require BASE_PATH . "/templates/dispatch/{$dispatcher}.view.php";
 	}
+
+	public static function redirect($url = '', $replace = true, $status = 303) {
+		header("location: {$url}", $replace, $status);
+		die();
+	}
 }

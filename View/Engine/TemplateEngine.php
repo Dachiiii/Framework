@@ -26,7 +26,7 @@ class TemplateEngine implements Engine {
 	}
 	protected function compile(string $template): string {
 		$template = preg_replace_callback('#@extends\(([^)]+)\)@#', function($matches){
-			return '<?php $this->extends('.$matches[1].') ?>';
+			return '<?php include_once $this->extends('.$matches[1].'); ?>';
 		}, $template);
 		$template = preg_replace_callback('#@if\((.*?)@#', function($matches) {
 			// dd($matches);
@@ -48,13 +48,8 @@ class TemplateEngine implements Engine {
 	}
 
 	protected function extends(string $template){
-		$backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,1);
-		// $layout = BASE_PATH . '/templates/layout/' . $template . '.template.php';
-		// dd($layout);
-		// return $layout;
-		$this->layouts[realpath($backtrace[0]['file'])] = $template;
-		return $this;
-		// return $this->layouts;
+		$layout = BASE_PATH . '/templates/layout/' . $template . '.template.php';
+		return $layout;
 	}
 
 	protected function escape(string $content): string {

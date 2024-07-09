@@ -1,6 +1,6 @@
 ![PHP Version](https://img.shields.io/badge/php-8.3.4-blue)
 ![Tested ON](https://img.shields.io/badge/Tested%20On-Ubuntu-yellow)
-![OS](https://img.shields.io/badge/OS-Ubuntu-orange/#icon=Linux)
+![OS](https://img.shields.io/badge/OS-Ubuntu-orange?logo=Linux)
 
 # MVC Framework (not finished)
 

@@ -4,6 +4,7 @@ namespace Framework\Http;
 use Framework\Route\Routing;
 use Framework\Http\Controllers\HomeController;
 use Framework\Database\Connection\ConnectionString;
+use Framework\Http\Middleware\Middleware;
 
 class Application {
 	private Request $request;
@@ -20,7 +21,7 @@ class Application {
 			$match = $this->routing->matches($route['uri'], $this->request->uri);
 			if ($route['method'] === $this->request->method) {
 				if ($match or $route['uri'] === $this->request->uri) {
-				
+					Middleware::HandleAll($this->request);
 					$route['controller'][0] = new $route['controller'][0]();
 					$callable = call_user_func($route['controller'],$this->request,$match);
 					return print($callable->template());					

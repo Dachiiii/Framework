@@ -10,8 +10,6 @@ class UserValidation extends Validation {
 	}
 
 	public function initRules() {
-		// Add your own inputs
-		
 		// $this->rules['username'] 	= \Respect\Validation\Validator::alnum('_')->length(6,20);
 		// $this->rules['email'] 		= \Respect\Validation\Validator::email();
 		// $this->rules['password'] 	= \Respect\Validation\Validator::alnum()->length(4,20);

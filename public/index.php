@@ -6,6 +6,7 @@ function dd($dump) {
 	exit();
 }
 
+session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
 define('BASE_PATH',dirname(__DIR__));

@@ -44,6 +44,13 @@ class TemplateEngine implements Engine {
 		$template = preg_replace_callback('#\{\{([^}]+)}\}#', function($matches) {
 			return '<?php print $this->escape($'.$matches[1].'); ?>';
 		},$template);
+		$template = preg_replace_callback('#\{([^}]+)}#', function($matches) {
+			return '<?php print $this->escape('.$matches[1].'); ?>';
+		},$template);
+		$template = preg_replace_callback('#@csrf@#', function($matches) {
+			$csrf = csrf();
+			return "<input type='hidden' name='csrf' value='{$csrf}'>";
+		},$template);
 		return $template;
 	}
 

@@ -13,3 +13,15 @@ function view(string $template, array $data = []): string {
 	}
 	return $manager->render($template, $data);
 }
+
+function csrf() {
+	$_SESSION['token'] = bin2hex(random_bytes(32));
+	return $_SESSION['token'];
+}
+
+function secure() {
+	if(!isset($_POST['csrf']) || !isset($_SESSION['token']) ||
+		!hash_equals($_SESSION['token'], $_POST['csrf'])) {
+		throw new Exception('CSRF token mismatch');
+	}
+}

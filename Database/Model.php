@@ -51,7 +51,6 @@ abstract class Model {
 	public static function query() {
 		$model = new static();
 		$query = $model->getConnection()->from($model->getTable());
-		// return $query;
 		return (new ModelCollector($query, static::class))->from($model->getTable());
 	}
 
@@ -103,14 +102,12 @@ abstract class Model {
 	public function hasOne(string $class, string $foreignKey, string $primaryKey = 'id'): mixed {
 		$model = new $class;
 		$query = $class::query()->from($model->getTable())->where([$foreignKey, $this->attributes['id']]);
-		// return new Relationship($query, 'first');
 		return $query->first();
 	}
 
 	public function hasMany(string $class, string $foreignKey, string $primaryKey = 'id'): mixed {
 		$model = new $class;
 		$query = $class::query()->from($model->getTable())->where([$foreignKey,$this->attributes['id']]);
-		// return new Relationship($query,'all');
 		return $query->all();
 	}
 
@@ -118,7 +115,6 @@ abstract class Model {
 		$model = new $class;
 		$query = $class::query()->from($model->getTable())->where([$primaryKey,$this->attributes[$foreignKey]]);
 		return $query->first();
-		// return new Relationship($query,'first');
 	}
 
 }
